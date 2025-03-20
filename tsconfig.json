@@ -6,7 +6,10 @@
     "**/.server/**/*.tsx",
     "**/.client/**/*.ts",
     "**/.client/**/*.tsx",
-    ".react-router/types/**/*"
+    ".react-router/types/**/*",
+    "server.js",
+    "tailwind.config.ts",
+    "vite.config.ts"
   ],
   "exclude": ["src"],
   "compilerOptions": {
