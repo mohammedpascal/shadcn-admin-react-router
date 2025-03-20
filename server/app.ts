@@ -1,25 +1,23 @@
-import { createRequestHandler } from '@react-router/express'
-import express from 'express'
-import 'react-router'
+import "react-router";
+import { createRequestHandler } from "@react-router/express";
+import express from "express";
 
-declare module 'react-router' {
-  export interface AppLoadContext {
-    VALUE_FROM_VERCEL: string
+declare module "react-router" {
+  interface AppLoadContext {
+    VALUE_FROM_EXPRESS: string;
   }
 }
 
-const app = express()
+export const app = express();
 
 app.use(
   createRequestHandler({
     // @ts-expect-error - virtual module provided by React Router at build time
-    build: () => import('virtual:react-router/server-build'),
+    build: () => import("virtual:react-router/server-build"),
     getLoadContext() {
       return {
-        VALUE_FROM_VERCEL: 'Hello from Vercel',
-      }
+        VALUE_FROM_EXPRESS: "Hello from Express",
+      };
     },
-  }),
-)
-
-export default app
+  })
+);
