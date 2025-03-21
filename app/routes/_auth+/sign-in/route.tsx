@@ -1,8 +1,8 @@
 import { parseWithZod } from '@conform-to/zod'
-import { setTimeout } from 'node:timers/promises'
-import { redirectWithSuccess } from 'remix-toast'
+import { data, redirect } from 'react-router'
 import { z } from 'zod'
 import { Card } from '~/components/ui/card'
+import { commitSession, getSession } from '~/sessions.server'
 import type { Route } from './+types/route'
 import { UserAuthForm } from './components/user-auth-form'
 
@@ -15,6 +15,30 @@ export const formSchema = z.object({
   }),
 })
 
+export async function loader({ request }: Route.LoaderArgs) {
+  const session = await getSession(request.headers.get('Cookie'))
+
+  if (session.has('userId')) {
+    // Redirect to the home page if they are already signed in.
+    return redirect('/')
+  }
+
+  return data(
+    { error: session.get('error') },
+    {
+      headers: { 'Set-Cookie': await commitSession(session) },
+    },
+  )
+}
+
+async function validateCredentials(email: string, password: string) {
+  if (email !== 'mohammedpascal@gmail.com') {
+    return null
+  }
+
+  return '1234567890'
+}
+
 export const action = async ({ request }: Route.ActionArgs) => {
   const submission = parseWithZod(await request.formData(), {
     schema: formSchema,
@@ -23,18 +47,25 @@ export const action = async ({ request }: Route.ActionArgs) => {
   if (submission.status !== 'success') {
     return { lastResult: submission.reply() }
   }
+  const { email, password } = submission.value
+  const userId = await validateCredentials(email, password)
 
-  if (submission.value.email !== 'name@example.com') {
+  if (userId == null) {
     return {
       lastResult: submission.reply({
         formErrors: ['Invalid email or password'],
       }),
     }
   }
-  await setTimeout(1000)
 
-  throw await redirectWithSuccess('/', {
-    message: 'You have successfully logged in!',
+  const session = await getSession(request.headers.get('Cookie'))
+  session.set('userId', userId)
+
+  // Login succeeded, send them to the home page.
+  return redirect('/', {
+    headers: {
+      'Set-Cookie': await commitSession(session),
+    },
   })
 }
 
@@ -49,6 +80,7 @@ export default function SignIn() {
         </p>
       </div>
       <UserAuthForm />
+
       <p className="text-muted-foreground mt-4 px-8 text-center text-sm">
         By clicking login, you agree to our{' '}
         <a

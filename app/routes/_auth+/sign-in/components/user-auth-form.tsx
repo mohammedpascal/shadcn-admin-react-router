@@ -15,6 +15,7 @@ type UserAuthFormProps = HTMLAttributes<HTMLFormElement>
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
   const actionData = useActionData<typeof action>()
+
   const [form, { email, password }] = useForm({
     lastResult: actionData?.lastResult,
     defaultValue: {
@@ -24,6 +25,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     onValidate: ({ formData }) =>
       parseWithZod(formData, { schema: formSchema }),
   })
+
   const navigation = useNavigation()
   const isLoading = navigation.state === 'submitting'
 
