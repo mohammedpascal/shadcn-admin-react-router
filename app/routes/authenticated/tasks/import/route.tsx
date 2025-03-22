@@ -11,13 +11,18 @@ import { Separator } from '~/components/ui/separator'
 import { HStack } from '~/components/ui/stack'
 import type { Route } from './+types/route'
 
+// Add this check for server/client environment
+const isServer = typeof window === 'undefined'
+
 export const formSchema = z.object({
-  file: z
-    .instanceof(File, { message: 'Please upload a file.' })
-    .refine(
-      (file) => ['text/csv'].includes(file.type),
-      'Please upload csv format.',
-    ),
+  file: isServer
+    ? z.any() // On server, accept any since File API isn't available
+    : z
+        .instanceof(File, { message: 'Please upload a file.' })
+        .refine(
+          (file) => ['text/csv'].includes(file.type),
+          'Please upload csv format.',
+        ),
 })
 
 export const handle = {
