@@ -150,9 +150,6 @@ importers:
       '@react-router/dev':
         specifier: ^7.2.0
         version: 7.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(tsx@4.19.2)(typescript@5.7.3)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.6.1))(wrangler@3.95.0(@cloudflare/workers-types@4.20241205.0))(yaml@2.6.1)
-      '@react-router/remix-routes-option-adapter':
-        specifier: ^7.2.0
-        version: 7.2.0(@react-router/dev@7.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(tsx@4.19.2)(typescript@5.7.3)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.6.1))(wrangler@3.95.0(@cloudflare/workers-types@4.20241205.0))(yaml@2.6.1))(typescript@5.7.3)
       '@tailwindcss/vite':
         specifier: ^4.0.9
         version: 4.0.9(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.6.1))
@@ -1519,16 +1516,6 @@ packages:
     engines: {node: '>=20.0.0'}
     peerDependencies:
       react-router: 7.2.0
-      typescript: ^5.1.0
-    peerDependenciesMeta:
-      typescript:
-        optional: true
-
-  '@react-router/remix-routes-option-adapter@7.2.0':
-    resolution: {integrity: sha512-y5LH81y4JMP392FUVdjH+JbT/Q/vzKVA5t/HBb/JIUFjh/KN5bKt4zIoWY7sbr95A61RSIBr4ZDLH/VZrxL35A==}
-    engines: {node: '>=20.0.0'}
-    peerDependencies:
-      '@react-router/dev': ^7.2.0
       typescript: ^5.1.0
     peerDependenciesMeta:
       typescript:
@@ -4539,12 +4526,6 @@ snapshots:
       source-map-support: 0.5.21
       stream-slice: 0.1.2
       undici: 6.21.1
-    optionalDependencies:
-      typescript: 5.7.3
-
-  '@react-router/remix-routes-option-adapter@7.2.0(@react-router/dev@7.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(tsx@4.19.2)(typescript@5.7.3)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.6.1))(wrangler@3.95.0(@cloudflare/workers-types@4.20241205.0))(yaml@2.6.1))(typescript@5.7.3)':
-    dependencies:
-      '@react-router/dev': 7.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(react-router@7.2.0(react-dom@19.0.0(react@19.0.0))(react@19.0.0))(tsx@4.19.2)(typescript@5.7.3)(vite@6.2.0(@types/node@22.13.5)(jiti@2.4.2)(lightningcss@1.29.1)(tsx@4.19.2)(yaml@2.6.1))(wrangler@3.95.0(@cloudflare/workers-types@4.20241205.0))(yaml@2.6.1)
     optionalDependencies:
       typescript: 5.7.3
 
