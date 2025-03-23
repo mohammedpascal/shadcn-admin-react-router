@@ -1,4 +1,5 @@
 FROM node:20-alpine AS base
+RUN npm install -g pnpm
 
 FROM base AS development-dependencies-env
 COPY . /app
